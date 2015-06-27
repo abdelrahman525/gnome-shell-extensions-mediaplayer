@@ -423,13 +423,12 @@ const MPRISPlayer = new Lang.Class({
     },
 
     _setIdentity: function() {
+        this.label.text = this._identity;
         if (this._status) {
-            this.label.text = this._identity + " - " + _(this._status);
-            //this.playerTitle.setLabel(this._identity + " - " + _(this._status));
+          this.status.text = _(this._status);
         }
         else {
-            //this.playerTitle.setLabel(this._identity);
-            this.label.text = this._identity;
+          this.status.text = null;
         }
     },
 

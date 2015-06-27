@@ -155,7 +155,7 @@ const PlayerManager = new Lang.Class({
             if (this._players[Settings.DEFAULT_PLAYER_OWNER])
                 this._removePlayer(null, Settings.DEFAULT_PLAYER_OWNER);
 
-            this._addPlayerMenu(this._players[owner].player);
+            this._addPlayerToMenu(this._players[owner].player);
         }
 
         this._hideOrDefaultPlayer();
@@ -178,7 +178,8 @@ const PlayerManager = new Lang.Class({
           if (!this._players[Settings.DEFAULT_PLAYER_OWNER]) {
             let player = new Player.DefaultPlayer();
             this._players[Settings.DEFAULT_PLAYER_OWNER] = {player: player, signals: []};
-            this._addPlayerMenu(player);
+            this._addPlayerToMenu(player);
+            player.menu.open();
           }
         }
         else if (this._nbPlayers() > 1 && this._players[Settings.DEFAULT_PLAYER_OWNER]) {
@@ -187,7 +188,7 @@ const PlayerManager = new Lang.Class({
         this._hideOrShowMenu();
     },
 
-    _addPlayerMenu: function(player) {
+    _addPlayerToMenu: function(player) {
         let position = this._getPlayerPosition();
 
         let item = this._getMenuItem(position);
